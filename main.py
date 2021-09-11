@@ -18,10 +18,17 @@ my_list = [
 
 
 @app.route('/sjj')
-def hello():
+def sjj():
     """
     """
     return render_template('sjj.html', my_list=my_list)
+
+
+@app.route('/cftj')
+def cftj():
+    """
+    """
+    return render_template('cftj.html')
 
 
 if __name__ == '__main__':
