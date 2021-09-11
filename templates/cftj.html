@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <link rel="stylesheet" href="../css/cftj.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <div class="hd">
+            处方智能推荐及生存预测平台
+        </div>
+    </header>
+    <div class="cd">
+        <p class="dh_bt">处方智能推荐</p>
+        <a href="cftj.html" class="dh_dq">中医处方推荐</a>
+        <a href="sjj.html" class="dh">数据集管理</a>
+        <p class="dh_bt">生存预测</p>
+        <a href="" class="dh">Kaplan-Meier分析</a>
+        <a href="" class="dh">COX回归</a>
+        <a href="" class="dh">数据集管理</a>
+    </div>
+    <div class="zt">
+        <p class="tishi">请输入您的个人信息：</p>
+        <form action="">
+            <div>
+                <span class="l11">
+                    姓名：<input type="text" class="xx">
+                </span>
+                <span class="l12">
+                    性别：<select name="xb" id="" class="sl">
+                        <option value="man">男性</option>
+                        <option value="women">女性</option>
+                        <option value="none" selected="selected">--请选择性别--</option>
+                    </select>
+                </span>
+            </div>
+            <div>
+                <span class="l21">
+                    年龄：<input type="text" class="xx">
+                </span>
+                <span class="l22">
+                    血型：<select name="xuexing" id="" class="sl">
+                        <option value="A">A型</option>
+                        <option value="B">B型</option>
+                        <option value="AB">AB型</option>
+                        <option value="O">O型</option>
+                        <option value="none" selected>--请选择血型--</option>
+                    </select>
+                </span>
+            </div>
+            <p class="tishi tishi2">请输入规范化后的病史:</p>
+            <textarea name="cftj" id="cftj" cols="100" rows="10">请输入规范化后的病史</textarea>
+            <br />
+            <div>
+                <select name="moxing" id="moxing">
+                    <option value="none" selected>--请选择推荐模型--</option>
+                </select>
+                <input type="submit" value="开始推荐" id="kstj">
+            </div>
+            
+        </form>
+    </div>
+</body>
+
+</html>
