@@ -22,44 +22,42 @@
         <a href="" class="dh">COX回归</a>
         <a href="" class="dh">数据集管理</a>
     </div> -->
-    {% extends 'base.html' %}
-    {% block styles%}
- <link rel="stylesheet" href="{{ url_for('static',filename='sjj.css') }}" type="text/css">
-    {% endblock %}
-    {% block content %}
-    <div class="zt">
-        <form action="">
-            <ul class="file">
-                <li class="biaotou">
-                    <span class="l1">数据名称</span>
-                    <span class="l2">备注</span>
-                    <span class="l3">操作</span>
-                </li>
-                {% for item in my_list %}
+{% extends 'base.html' %}
+{% block styles%}
+<link rel="stylesheet" href="{{ url_for('static',filename='sjj.css') }}" type="text/css">
+{% endblock %}
+{% block content %}
+<div class="zt">
+    <ul class="file">
+        <li class="biaotou">
+            <span class="l1">数据名称</span>
+            <span class="l2">备注</span>
+            <span class="l3">操作</span>
+        </li>
+        {% for item in file_list %}
 
-                <li>
-                    <span class="l1">{{item.name}}</item></span>
-                    <span class="l2">{{item.beizhu}}</span>
-                    <span class="edit">
-                        <input type="submit" value="edit">
+        <li>
+            <span class="l1">
+                {{ item.name }}
+            </span>
+            <span class="l2">
+                {{ item.path }}
+            </span>
+            <span class="edit">
+                        <form action="{{ url_for('delete',file_id=item.id) }}" method="post">
+                        <input type="submit" value="Delete">
+                        </form>
                     </span>
-                    <span class="download">
-                        <a href="#">download</a>
+            <span class="download">
+                        <a href="static/uploads/{{ item.name }}">Download</a>
                     </span>
-                </li>
-                {% endfor %}
-                <!-- <li>
-                    <span class="l1">test2.xls</span>
-                    <span class="l2">这是测试2</span>
-                    <span class="edit">
-                        <input type="submit" value="edit">
-                    </span>
-                    <span class="download">
-                        <a href="#">download</a>
-                    </span>
-                </li> -->
-            </ul>
-            <input type="file" id="wjsc">
-        </form>
-    </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <form action="/sjj" method="post" enctype="multipart/form-data">
+        <input type="file" id="wjsc" name="wjsc">
+        <span class="beizhu">备注：<input type="text" name="beizhu"></span>
+        <input type="submit" value="submit" id="f_sb">
+    </form>
+</div>
 {% endblock %}

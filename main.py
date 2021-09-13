@@ -1,27 +1,56 @@
-from flask import Flask, app, render_template, sessions
-from flask.helpers import flash
-from werkzeug.utils import redirect
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, app, render_template, sessions, request, url_for
+from flask import flash
+from werkzeug.utils import redirect, secure_filename
+import os
+import pymysql
+
+pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
-
-app.secret_key = '123'
-my_list = [
-    {
-        "name": "test.xls",
-        "beizhu": "none"
-    },
-    {
-        "name": "test2.xls",
-        "beizhu": "none"
-    }
-]
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:200189ymy@127.0.0.1:3306/web_db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = '123'
+db = SQLAlchemy(app)
 
 
-@app.route('/sjj')
+class File(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text)
+    path = db.Column(db.Text)
+
+
+db.create_all()
+
+
+@app.route('/sjj', methods=['GET', 'POST'])
 def sjj():
-    """
-    """
-    return render_template('sjj.html', my_list=my_list)
+    if request.method == 'POST':
+        f = request.files.get('wjsc')
+        # bzhu = request.form.get('beizhu')
+        basepath = os.path.dirname(__file__)  # 当前文件所在路径
+        upload_path = os.path.join(basepath, r'static\uploads', secure_filename(f.filename))
+        f.save(upload_path)
+        fl = File(name=secure_filename(f.filename))
+        db.session.add(fl)
+        db.session.commit()
+        flash('successful!')
+        return redirect(url_for('sjj'))
+    file_list = File.query.all()
+    return render_template('sjj.html', file_list=file_list)
+
+
+@app.route('/delete/<int:file_id>', methods=['GET', 'POST'])
+def delete(file_id):
+    if request.method == 'POST':
+        fd = File.query.get_or_404(file_id)
+        db.session.delete(fd)
+        db.session.commit()
+        basepath = os.path.dirname(__file__)
+        filepath = os.path.join(basepath, r'static\uploads', fd.name)
+        os.remove(filepath)
+        flash('Item deleted.')
+        return redirect(url_for('sjj'))
 
 
 @app.route('/cftj')

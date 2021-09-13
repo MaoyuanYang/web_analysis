@@ -67,10 +67,10 @@ html,body{
 }
 .file li{
     list-style: none;
-    width: 600px;
+    width: 750px;
     height: 50px;
     line-height: 45px;
-    padding-left: 70px;
+    padding-left: 0px;
     box-shadow: 0 2px 5px 0 rgb(0,0,0,0.16);
     margin-left: 100px;
     position: relative;
@@ -79,11 +79,17 @@ html,body{
     margin-top: 40px;
     box-shadow: 0 0 0;
 }
+.l1{
+    position:absolute;
+    left:50px
+}
 .l2{
-    margin-left: 110px;
+    position:absolute;
+    left:270px
 }
 .l3{
-    margin-left: 280px;
+    position:absolute;
+    right:70px
 }
 .edit{
     position: absolute;
@@ -111,9 +117,15 @@ html,body{
     text-decoration: none;
     color: black;
 }
+.beizhu{
+    font-size:14px;;
+}
 #wjsc{
     margin-top: 20px;
-    margin-left: 630px;
+    margin-left: 300px;
+}
+#f_sb{
+margin-left:20px;
 }
 .file li:hover{
     background-color: rgb(236, 239, 243);
