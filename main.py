@@ -17,6 +17,7 @@ db = SQLAlchemy(app)
 class File(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text)
+    bz = db.Column(db.Text)
     path = db.Column(db.Text)
 
 
@@ -27,11 +28,11 @@ db.create_all()
 def sjj():
     if request.method == 'POST':
         f = request.files.get('wjsc')
-        # bzhu = request.form.get('beizhu')
+        bzhu = request.form.get('beizhu')
         basepath = os.path.dirname(__file__)  # 当前文件所在路径
         upload_path = os.path.join(basepath, r'static\uploads', secure_filename(f.filename))
         f.save(upload_path)
-        fl = File(name=secure_filename(f.filename))
+        fl = File(name=secure_filename(f.filename), bz=bzhu)
         db.session.add(fl)
         db.session.commit()
         flash('successful!')
