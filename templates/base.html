@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="zh-CN">
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
 <head>
     {% block head %}
     <meta charset="UTF-8">
@@ -8,28 +11,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static',filename='base.css') }}" type="text/css">
+<!--    <link rel="stylesheet" href="{{ url_for('static',filename='base.css') }}" type="text/css">-->
+    {% endblock %}
+    {% block scripts %}
+<!--    <script>-->
+<!--        function dl()-->
+<!--        {-->
+<!--        alert("Are you sure?")-->
+<!--        }-->
+
+
+<!--    </script>-->
     {% endblock %}
     {% endblock %}
 </head>
 <body>
 <header>
-    {% for message in get_flashed_messages() %}
-        <div>{{ message }}</div>
-    {% endfor %}
-        <div class="hd">
-            处方智能推荐及生存预测平台
-        </div>
-    </header>
-    <div class="cd">
-        <p class="dh_bt">处方智能推荐</p>
-        <a href="{{ url_for('cftj') }}" class="dh_dq">中医处方推荐</a>
-        <a href="{{ url_for('sjj') }}" class="dh">数据集管理</a>
-        <p class="dh_bt">生存分析</p>
-        <a href="" class="dh">Kaplan-Meier分析</a>
-        <a href="" class="dh">COX回归</a>
-        <a href="" class="dh">数据集管理</a>
+    <div class="hd">
+        处方智能推荐及生存预测平台
     </div>
-    {% block content %} {% endblock %}
+</header>
+<div class="cd">
+    <p class="dh_bt">处方智能推荐</p>
+    <a href="{{ url_for('cftj') }}" class="dh_dq">中医处方推荐</a>
+    <a href="{{ url_for('sjj') }}" class="dh">数据集管理</a>
+    <p class="dh_bt">生存分析</p>
+    <a href="" class="dh">Kaplan-Meier分析</a>
+    <a href="" class="dh">COX回归</a>
+    <a href="" class="dh">数据集管理</a>
+</div>
+{% block content %} {% endblock %}
 </body>
 </html>

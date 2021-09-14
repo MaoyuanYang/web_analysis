@@ -10,7 +10,7 @@ pymysql.install_as_MySQLdb()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:200189ymy@127.0.0.1:3306/web_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = '123'
+app.config['SECRET_KEY'] = '23'
 db = SQLAlchemy(app)
 
 
@@ -35,7 +35,7 @@ def sjj():
         fl = File(name=secure_filename(f.filename), bz=bzhu)
         db.session.add(fl)
         db.session.commit()
-        flash('successful!')
+        flash('upload successfully!')
         return redirect(url_for('sjj'))
     file_list = File.query.all()
     return render_template('sjj.html', file_list=file_list)
@@ -50,7 +50,7 @@ def delete(file_id):
         basepath = os.path.dirname(__file__)
         filepath = os.path.join(basepath, r'static\uploads', fd.name)
         os.remove(filepath)
-        flash('Item deleted.')
+        flash('delete successfully！')
         return redirect(url_for('sjj'))
 
 

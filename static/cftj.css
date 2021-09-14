@@ -46,6 +46,7 @@ html,body{
     line-height: 48px;
     text-decoration: none;
     text-indent: 3em;
+    font-weight:600;
 }
 .cd{
     height: 100%;
