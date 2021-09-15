@@ -35,7 +35,7 @@ def sjj():
         fl = File(name=secure_filename(f.filename), bz=bzhu)
         db.session.add(fl)
         db.session.commit()
-        flash('upload successfully!')
+        flash('Upload successfully!')
         return redirect(url_for('sjj'))
     file_list = File.query.all()
     return render_template('sjj.html', file_list=file_list)
@@ -50,7 +50,7 @@ def delete(file_id):
         basepath = os.path.dirname(__file__)
         filepath = os.path.join(basepath, r'static\uploads', fd.name)
         os.remove(filepath)
-        flash('delete successfully！')
+        flash('Delete successfully！')
         return redirect(url_for('sjj'))
 
 

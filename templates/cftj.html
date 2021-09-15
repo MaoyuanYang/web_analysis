@@ -1,29 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="zh-CN">-->
-
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Demo</title>-->
-<!--    <link rel="stylesheet" href="../css/cftj.css" type="text/css">-->
-<!--</head>-->
-
-<!--<body>-->
-<!--    <header>-->
-<!--        <div class="hd">-->
-<!--            处方智能推荐及生存预测平台-->
-<!--        </div>-->
-<!--    </header>-->
-<!--    <div class="cd">-->
-<!--        <p class="dh_bt">处方智能推荐</p>-->
-<!--        <a href="cftj.html" class="dh_dq">中医处方推荐</a>-->
-<!--        <a href="sjj.html" class="dh">数据集管理</a>-->
-<!--        <p class="dh_bt">生存预测</p>-->
-<!--        <a href="" class="dh">Kaplan-Meier分析</a>-->
-<!--        <a href="" class="dh">COX回归</a>-->
-<!--        <a href="" class="dh">数据集管理</a>-->
-<!--    </div>-->
 {% extends 'base.html' %}
 {% block styles %}
 <link rel="stylesheet" href="{{ url_for('static',filename='cftj.css') }}" type="text/css">
@@ -67,7 +41,6 @@
             </select>
             <input type="submit" value="开始推荐" id="kstj">
         </div>
-
     </form>
 </div>
 
