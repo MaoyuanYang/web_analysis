@@ -11,7 +11,7 @@ html,body{
     height: 50px;
     background-color:rgb(45,96,128);
     color: seashell;
-    font-family: 'Microsoft Yahei';
+    font-family: 'Microsoft Yahei', serif;
     font-weight: 600;
     line-height: 45px;
     text-indent: 3.3em;
@@ -74,7 +74,7 @@ html,body{
     height: 50px;
     line-height: 45px;
     padding-left: 0px;
-    box-shadow: 0 2px 5px 0 rgb(0,0,0,0.16);
+    box-shadow: 0 2px 5px 0 rgb(0,0,0.16);
     margin-left: 100px;
     position: relative;
 }

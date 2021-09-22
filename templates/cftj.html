@@ -4,11 +4,12 @@
 {% endblock %}
 {% block content %}
 <div class="zt">
-    <p class="tishi">请输入您的个人信息：</p>
-    <form action="">
+    <p class="tishi">请输入患者的详细信息：</p>
+    <form action="{{ url_for('recommend') }}" method="post">
         <div>
+                <span class="id">患者ID：<input type="text" class="xx" name="hz_id" required></span>
                 <span class="l11">
-                    姓名：<input type="text" class="xx" required>
+                    姓名：<input type="text" class="xx" name="nm" required>
                 </span>
             <span class="l12">
                     性别：<select name="xb" id="xb" class="sl">
@@ -20,10 +21,10 @@
         </div>
         <div>
                 <span class="l21">
-                    年龄：<input type="text" class="xx">
+                    年龄：<input type="text" class="xx" name="age">
                 </span>
             <span class="l22">
-                    血型：<select name="xuexing" id="" class="sl">
+                    血型：<select name="abo" id="" class="sl">
                         <option value="A">A型</option>
                         <option value="B">B型</option>
                         <option value="AB">AB型</option>
@@ -33,7 +34,7 @@
                 </span>
         </div>
         <p class="tishi tishi2">请输入规范化后的病史:</p>
-        <textarea name="cftj" id="cftj" cols="100" rows="10">请输入规范化后的病史</textarea>
+        <textarea name="pmh" id="cftj" cols="100" rows="10">请输入规范化后的病史</textarea>
         <br/>
         <div>
             <select name="moxing" id="moxing">

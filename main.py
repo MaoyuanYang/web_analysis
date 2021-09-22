@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, app, render_template, sessions, request, url_for
 from flask import flash
+from sqlalchemy import ForeignKey
 from werkzeug.utils import redirect, secure_filename
 import os
 import pymysql
@@ -21,6 +22,22 @@ class File(db.Model):
     path = db.Column(db.Text)
 
 
+class Pii(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text)
+    sex = db.Column(db.Text)
+    age = db.Column(db.Integer)
+    abo = db.Column(db.Text)
+    symptoms = db.relationship('Sx', back_populates='patient')
+
+
+class Sx(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    symptom = db.Column(db.Text)
+    p_id = db.Column(db.Integer, ForeignKey('pii.id'))
+    patient = db.relationship('Pii', back_populates='symptoms')
+
+
 db.create_all()
 
 
@@ -39,6 +56,29 @@ def sjj():
         return redirect(url_for('sjj'))
     file_list = File.query.all()
     return render_template('sjj.html', file_list=file_list)
+
+
+@app.route('/rec', methods=['GET', 'POST'])
+def recommend():
+    if request.method == 'POST':
+        hz_id = request.form.get('hz_id')
+        nm = request.form.get('nm')
+        xb = request.form.get('xb')
+        nl = request.form.get('age')
+        xx = request.form.get('abo')
+        pat = Pii(id=hz_id, name=nm, sex=xb, age=nl, abo=xx)
+        db.session.add(pat)
+        db.session.commit()
+        spt = request.form.get('pmh')
+        spts = spt.split(';')
+        spt_num = len(spts)
+        for index in range(spt_num):
+            zz = Sx(symptom=spts[index], p_id=hz_id)
+            db.session.add(zz)
+            db.session.commit()
+        flash('Successfully!')
+        return redirect(url_for('recommend'))
+    return render_template('cftj.html')
 
 
 @app.route('/delete/<int:file_id>', methods=['GET', 'POST'])
